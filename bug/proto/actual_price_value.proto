@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+import "date.proto";
+import "tier.proto";
+
+option java_package = "com.foo.serialization";
+
+message PActualPriceValue {
+    PDate last_update = 1;
+    repeated PPriceTimeline timelines = 2;
+}
+
+message PPriceTimeline {
+    PEntityIdentifier entity_identifier = 1;
+    PTier tier = 2;
+    repeated PPrice prices = 3;
+    repeated PTax taxes = 4;
+    double sale_at_loss = 5;
+}
+
+message PEntityIdentifier {
+    string code = 1;
+    PEntityType type = 2;
+
+    enum PEntityType {
+        MODEL = 0;
+        ITEM = 1;
+    }
+}
+
+message PPrice {
+    string public_id = 1;
+    PDate start_date = 2;
+    PDate end_date = 3;
+    double value_with_taxes = 4;
+    double value_without_taxes = 5;
+    double reference_value_with_taxes = 6;
+    double reference_value_without_taxes = 7;
+    double margin = 8;
+    PPriceType price_type = 9;
+    string currency = 10;
+    string user_id = 11;
+    PPrice original_price = 12;
+}
+
+enum PPriceType {
+    STANDARD = 0;
+    DROP = 1;
+    DAY_TO_DAY_PROMOTION = 2;
+    END_OF_LINE = 3;
+    SEASON_SALES = 4;
+}
+
+message PTax {
+    string type = 1;
+    double value = 2;
+}
+

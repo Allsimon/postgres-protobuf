@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "com.foo.serialization";
+
+message PDate {
+    int64 timestamp = 1;
+}
