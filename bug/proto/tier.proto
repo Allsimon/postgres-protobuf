@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "com.foo.serialization";
+
+message PTier {
+    int32 type = 1;
+    int32 code = 2;
+    int32 sub_code = 3;
+}
