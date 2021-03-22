@@ -11,7 +11,7 @@ docker run  -it --rm --name some-postgres -e POSTGRES_PASSWORD=pass bug_repro ps
 docker exec -ti some-postgres psql -h localhost -U postgres -W
 ```
 
-This query:
+This query works correctly:
 ```sql
 postgres=# SELECT protobuf_query('PActualPriceValue:timelines[*]', value) from bar;
 
@@ -26,7 +26,7 @@ saleAtLoss":-1}
 (1 row)
 ```
 
-beautified and with useless data removed:
+beautified and with 'useless' data removed:
 ```json
 {
   ...
@@ -45,7 +45,7 @@ beautified and with useless data removed:
 
 Those queries seems to returns wrong data:
 ```
-# Price with `valueWithTaxes` is missing
+# Second price is missing
 
 postgres=# SELECT protobuf_query('PActualPriceValue:timelines[*].prices[*]', value) from bar;
                                                                                                           protobuf_query                                                                                                           
