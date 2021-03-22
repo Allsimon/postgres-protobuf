@@ -1,6 +1,8 @@
 In order to reproduce locally:
 
 ```shell
+git clone -b bug/reproduction git@github.com:Allsimon/postgres-protobuf.git
+cd postgres-protobuf/bug
 docker build . -t bug_repro
 docker run  -it --rm --name some-postgres -e POSTGRES_PASSWORD=pass bug_repro psql
 
